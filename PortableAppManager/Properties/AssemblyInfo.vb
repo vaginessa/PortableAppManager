@@ -9,11 +9,11 @@ Imports System.Runtime.InteropServices
 ' you compile.
 
 <assembly: AssemblyTitle("PortableAppManager")>
-<assembly: AssemblyDescription("")>
+<assembly: AssemblyDescription("A easy way to manage your portable apps.")>
 <assembly: AssemblyConfiguration("")>
-<assembly: AssemblyCompany("")>
+<assembly: AssemblyCompany("Patrick G")>
 <assembly: AssemblyProduct("PortableAppManager")>
-<assembly: AssemblyCopyright("Copyright 2015")>
+<assembly: AssemblyCopyright("Copyright 2016 Patrick G")>
 <assembly: AssemblyTrademark("")>
 <assembly: AssemblyCulture("")>
 

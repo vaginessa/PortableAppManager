@@ -105,8 +105,13 @@ Public Partial Class MainForm
 		End If
 	End Function
 	
-	Function TryToCreateExeNameFile(ByVal AppDir As String, Optional ByVal promptForManyOptions As Boolean = False) As Boolean
+	Function TryToCreateExeNameFile(ByVal AppDir As String, Optional ByVal promptForManyOptions As Boolean = False, optional ByVal doNotOverwrite As Boolean = False) As Boolean
 		Try
+			If doNotOverwrite = True Then
+				If IO.File.Exists(AppDir + "/ExeName.txt") = True Then
+					Return True
+				End If
+			End If
 			Dim ddi As New DirectoryInfo(AppDir)
 			Dim ffi As FileInfo() = ddi.GetFiles("*.exe",SearchOption.AllDirectories)
 			Dim exe As String = ffi(0).FullName
@@ -218,10 +223,68 @@ Public Partial Class MainForm
 			
 		Catch
 			
+		End Try
+		Try
+			If IO.File.Exists(AppsFolder + "/size.txt") Then
+				Dim s As String() = IO.File.ReadAllText(AppsFolder + "/size.txt").Split(",")
+				Me.Height = CInt(s(0))
+				Me.Width = CInt(s(1))
+			End If
+			
+		Catch ex As Exception
 			
 		End Try
 		
 	End Sub       
 	
 
+	
+	Sub OpenAppsFolderToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Process.Start(AppsFolder)
+	End Sub
+	
+	Sub AboutToolStripMenuItemClick(sender As Object, e As EventArgs)
+		MsgBox(My.Application.Info.Title + " " + CStr(My.Application.Info.Version.Major) + "." + CStr(My.Application.Info.Version.Minor)  + Environment.NewLine + My.Application.Info.Description + Environment.NewLine + My.Application.Info.Copyright)
+	End Sub
+	
+	Sub AddExistingAppToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Dim fbd As New FolderBrowserDialog()
+		fbd.Description = "Choose the folder with the app files"
+		fbd.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)
+		Select Case fbd.ShowDialog()
+			Case DialogResult.OK
+				If MsgBox("Confirm folder: " + fbd.SelectedPath + " ?", MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
+					Dim di As New DirectoryInfo(fbd.SelectedPath)
+					Dim target As String = AppsFolder + "\" + di.Name
+					MsgBox("This may take a while. Press OK to continue.")
+					My.Computer.FileSystem.CopyDirectory(fbd.SelectedPath, target)
+					If TryToCreateExeNameFile(target, True, True) = False Then
+						MsgBox("Cannot find executable in the folder")
+						Exit Sub
+					Else
+						If TryToCreateIconFile(target + "\" + IO.File.ReadAllText(target + "\ExeName.txt").Replace(Environment.NewLine,""),target) = False Then
+							MsgBox("Error creating icon file. Continuing anyways.")
+							LoadApps()
+						End If
+					End If
+					
+				Else
+					MsgBox("Aborted")
+				End If
+		End Select
+		MsgBox("Done.")
+		LoadApps() 	
+	End Sub
+	
+	Sub ExitToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Me.Close()
+	End Sub
+	
+	Sub MainFormFormClosing(sender As Object, e As FormClosingEventArgs)
+		Try
+			IO.File.WriteAllText(AppsFolder + "/size.txt",CStr(Me.Height) + "," + CStr(Me.Width))
+		Catch
+			
+		End Try
+	End Sub
 End Class

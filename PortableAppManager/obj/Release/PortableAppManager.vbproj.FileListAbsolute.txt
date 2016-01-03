@@ -1,0 +1,6 @@
+C:\Users\Patrick\Documents\GitHub\PortableAppManager\Release\PortableAppManager.exe
+C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.vbprojResolveAssemblyReference.cache
+C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.LaunchButton.resources
+C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.MainForm.resources
+C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.vbproj.GenerateResource.Cache
+C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.exe
