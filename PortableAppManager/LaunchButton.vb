@@ -136,4 +136,17 @@ Public Partial Class LaunchButton
 		
 	End Sub
 	
+	
+	Sub OpenFolderToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Process.Start(AppPath)
+	End Sub
+	
+	Sub RefreshIconToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Try
+			IO.File.Delete(AppPath + "/icon.png")
+		Catch
+			
+		End Try
+		MainForm.LoadApps()
+	End Sub
 End Class

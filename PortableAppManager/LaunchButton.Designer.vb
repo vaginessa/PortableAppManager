@@ -35,7 +35,9 @@ Partial Class LaunchButton
 		Me.button1 = New System.Windows.Forms.Button()
 		Me.contextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.launchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.openFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.removeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.refreshIconToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.contextMenuStrip1.SuspendLayout
 		Me.SuspendLayout
 		'
@@ -61,9 +63,9 @@ Partial Class LaunchButton
 		'
 		'contextMenuStrip1
 		'
-		Me.contextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.launchToolStripMenuItem, Me.removeToolStripMenuItem})
+		Me.contextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.launchToolStripMenuItem, Me.openFolderToolStripMenuItem, Me.refreshIconToolStripMenuItem, Me.removeToolStripMenuItem})
 		Me.contextMenuStrip1.Name = "contextMenuStrip1"
-		Me.contextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+		Me.contextMenuStrip1.Size = New System.Drawing.Size(153, 114)
 		'
 		'launchToolStripMenuItem
 		'
@@ -73,6 +75,13 @@ Partial Class LaunchButton
 		Me.launchToolStripMenuItem.Text = "Launch"
 		AddHandler Me.launchToolStripMenuItem.Click, AddressOf Me.LaunchToolStripMenuItemClick
 		'
+		'openFolderToolStripMenuItem
+		'
+		Me.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem"
+		Me.openFolderToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+		Me.openFolderToolStripMenuItem.Text = "Open Folder"
+		AddHandler Me.openFolderToolStripMenuItem.Click, AddressOf Me.OpenFolderToolStripMenuItemClick
+		'
 		'removeToolStripMenuItem
 		'
 		Me.removeToolStripMenuItem.Name = "removeToolStripMenuItem"
@@ -80,6 +89,13 @@ Partial Class LaunchButton
 		Me.removeToolStripMenuItem.Text = "Remove"
 		Me.removeToolStripMenuItem.Visible = false
 		AddHandler Me.removeToolStripMenuItem.Click, AddressOf Me.RemoveToolStripMenuItemClick
+		'
+		'refreshIconToolStripMenuItem
+		'
+		Me.refreshIconToolStripMenuItem.Name = "refreshIconToolStripMenuItem"
+		Me.refreshIconToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+		Me.refreshIconToolStripMenuItem.Text = "Refresh icon"
+		AddHandler Me.refreshIconToolStripMenuItem.Click, AddressOf Me.RefreshIconToolStripMenuItemClick
 		'
 		'LaunchButton
 		'
@@ -93,6 +109,8 @@ Partial Class LaunchButton
 		Me.contextMenuStrip1.ResumeLayout(false)
 		Me.ResumeLayout(false)
 	End Sub
+	Private refreshIconToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+	Private openFolderToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 	Private launchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 	Private removeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 	Private contextMenuStrip1 As System.Windows.Forms.ContextMenuStrip

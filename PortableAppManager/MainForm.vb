@@ -34,7 +34,7 @@ Public Partial Class MainForm
 	End Sub
 	#End Region
 	
-	Sub LoadApps()
+	Public Sub LoadApps()
 		flowLayoutPanel1.Controls.Clear()
 		Apps.Clear()
 		If Directory.Exists(AppsFolder) = False Then
