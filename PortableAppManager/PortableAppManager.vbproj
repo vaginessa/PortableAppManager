@@ -54,10 +54,15 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FontManager.vb" />
     <Compile Include="LaunchButton.Designer.vb">
       <DependentUpon>LaunchButton.vb</DependentUpon>
     </Compile>
     <Compile Include="LaunchButton.vb" />
+    <Compile Include="LogViewer.Designer.vb">
+      <DependentUpon>LogViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LogViewer.vb" />
     <Compile Include="MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
     </Compile>
@@ -73,6 +78,9 @@
   <ItemGroup>
     <EmbeddedResource Include="LaunchButton.resx">
       <DependentUpon>LaunchButton.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogViewer.resx">
+      <DependentUpon>LogViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>

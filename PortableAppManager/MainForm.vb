@@ -38,15 +38,20 @@ Public Partial Class MainForm
 		flowLayoutPanel1.Controls.Clear()
 		Apps.Clear()
 		If Directory.Exists(AppsFolder) = False Then
+			Log("Creating apps folder")
 			Directory.CreateDirectory(AppsFolder)
 		End If
 		Dim di As New DirectoryInfo(AppsFolder)
 		
 		'Search for apps
+		Log("Searching for apps")
 		For Each d As DirectoryInfo In di.GetDirectories("*", SearchOption.TopDirectoryOnly)
 			' Attempt to create and fill ExeName.txt if does not exist
 			If IO.File.Exists(d.FullName + "/ExeName.txt") = False Then
+				Log("Attempting to create EXE name file")
 				TryToCreateExeNameFile(d.FullName)
+			Else
+				Log("Found EXE name file")
 			End If
 			
 			If IO.File.Exists(d.FullName + "/ExeName.txt") Then
@@ -55,14 +60,18 @@ Public Partial Class MainForm
 				Dim ExePath As String = ExeDir + "/" + File.ReadAllText(ExeDir + "/ExeName.txt").Replace(Environment.NewLine, "")
 				Dim ExeArguments As String = ""
 				Dim lb As New LaunchButton()
-				
+				Log("ENTRY: " + AppName)
 				'Check for exe arguments
 				If File.Exists(ExeDir + "/ExeArguments.txt") Then
+					Log("Found EXE arguments.")
 					ExeArguments = File.ReadAllText(ExeDir + "/ExeArguments.txt").Replace(Environment.NewLine, "")
+				Else
+					Log("No EXE arguments found.")
 				End If
 				
 				'Make sure app actually exists
 				If File.Exists(ExePath) = False Then
+					Log("Skipping entry, could not find EXE file")
 					Continue For ' Skip this entry
 				End If
 				
@@ -78,6 +87,7 @@ Public Partial Class MainForm
 				lb.Launch = p
 				
 				'Attempt to create icon.png if does not exist
+				Log("Finding icon for app")
 				TryToCreateIconFile(ExePath, ExeDir)
 				
 				'Set the button's image to icon.png
@@ -89,6 +99,7 @@ Public Partial Class MainForm
 				lb.Text = AppName
 				
 				'Add the button
+				Log("Adding to apps list")
 				Apps.Add(lb)
 				flowLayoutPanel1.Controls.Add(lb)
 				Application.DoEvents()
@@ -157,6 +168,12 @@ Public Partial Class MainForm
 	
 	Sub MainFormShown(sender As Object, e As EventArgs)
 		LoadApps()
+		Try
+			FontLoader.RunWorkerAsync()
+		Catch
+			
+		End Try
+		
 	End Sub
 	
 	Sub AddNewAppToolStripMenuItemClick(sender As Object, e As EventArgs)
@@ -237,7 +254,7 @@ Public Partial Class MainForm
 		
 	End Sub       
 	
-
+	
 	
 	Sub OpenAppsFolderToolStripMenuItemClick(sender As Object, e As EventArgs)
 		Process.Start(AppsFolder)
@@ -286,5 +303,70 @@ Public Partial Class MainForm
 		Catch
 			
 		End Try
+	End Sub
+	
+	Sub FontRefresherTick(sender As Object, e As EventArgs)
+		If FontLoader.IsBusy = False Then
+			FontLoader.RunWorkerAsync()
+			Log("Starting font refresh")
+		End If
+	End Sub
+	Dim fontsDir As String = My.Application.Info.DirectoryPath + "/Fonts"
+	Dim LoadedFonts As List(Of String) = New List(Of String)
+	Sub FontLoaderDoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs)
+		If IO.Directory.Exists(fontsDir) = False Then
+			Log("Creating fonts folder at: " + fontsDir)
+			IO.Directory.CreateDirectory(fontsDir)
+		End If
+		Dim di As IO.DirectoryInfo = New IO.DirectoryInfo(fontsDir)
+		Log("Searching for fonts in " + fontsDir)
+		For Each fi As IO.FileInfo In di.GetFiles("*.ttf",IO.SearchOption.AllDirectories)
+			Log("Font file: " + fi.FullName)
+			If LoadedFonts.Contains(fi.FullName) = False
+				Try
+					FontManager.AddFont(fi.FullName)
+					Log("Added font: " + fi.Name)
+					LoadedFonts.Add(fi.FullName)
+					Application.DoEvents()
+				Catch
+				End Try
+			End If
+		Next
+	End Sub
+	
+	Sub OpenFontsFolderToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Process.Start(fontsDir)
+	End Sub
+	
+	Sub ReloadFontsToolStripMenuItemClick(sender As Object, e As EventArgs)
+		If FontLoader.IsBusy = False Then
+			FontLoader.RunWorkerAsync()
+		End If
+	End Sub
+	
+	Sub ToolStripMenuItem1Click(sender As Object, e As EventArgs)
+		
+	End Sub
+	
+	Sub ShowLoadedFontsToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Dim f As New Form()
+		f.Text = "Fonts"
+		Dim c As New ListBox()
+		For Each filename As String In LoadedFonts
+			c.Items.Add(filename)
+		Next
+		c.Dock = DockStyle.Fill
+		f.Controls.Add(c)
+		f.ShowDialog()
+	End Sub
+	Dim appLog As String= My.Application.Info.Title + " " + CStr(My.Application.Info.Version.Major) + "." + CStr(My.Application.Info.Version.Minor)
+	Public Sub Log(ByVal logText As String)
+		Debug.WriteLine("[" + CStr(Now.ToShortTimeString()) + "] " + logText)
+		appLog = appLog + Environment.NewLine + "[" + CStr(Now.ToShortTimeString()) + "] " + logText
+	End Sub
+	
+	Sub ShowLogToolStripMenuItemClick(sender As Object, e As EventArgs)
+		Dim l As LogViewer = New LogViewer(appLog)
+		l.ShowDialog()
 	End Sub
 End Class

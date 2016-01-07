@@ -6,3 +6,12 @@ C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\bin\Debu
 C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\bin\Debug\PortableAppManager.pdb
 C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Debug\PortableAppManager.exe
 C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Debug\PortableAppManager.pdb
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Debug\ResolveAssemblyReference.cache
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Debug\PortableAppManager.LaunchButton.resources
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Debug\PortableAppManager.MainForm.resources
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Debug\GenerateResource.read.1.tlog
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Debug\GenerateResource.write.1.tlog
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Debug\PortableAppManager.exe
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Debug\PortableAppManager.pdb
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\bin\Debug\PortableAppManager.exe
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\bin\Debug\PortableAppManager.pdb

@@ -4,3 +4,11 @@ C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Rele
 C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.MainForm.resources
 C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.vbproj.GenerateResource.Cache
 C:\Users\Patrick\Documents\GitHub\PortableAppManager\PortableAppManager\obj\Release\PortableAppManager.exe
+D:\Code\GitHub\Geek1011\PortableAppManager-master\Release\PortableAppManager.exe
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Release\ResolveAssemblyReference.cache
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Release\PortableAppManager.LaunchButton.resources
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Release\PortableAppManager.MainForm.resources
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Release\GenerateResource.read.1.tlog
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Release\GenerateResource.write.1.tlog
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Release\PortableAppManager.exe
+D:\Code\GitHub\Geek1011\PortableAppManager-master\PortableAppManager\obj\Release\PortableAppManager.LogViewer.resources
